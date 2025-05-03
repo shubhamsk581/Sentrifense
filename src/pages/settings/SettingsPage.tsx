@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 const SettingsPage = () => {
   const [loading, setLoading] = useState(false);
@@ -63,6 +64,16 @@ const SettingsPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
+                  <Label htmlFor="theme-mode">Theme Mode</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Switch between light and dark mode
+                  </p>
+                </div>
+                <ThemeSwitcher />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
                   <Label htmlFor="auto-log-out">Auto Log Out</Label>
                   <p className="text-sm text-muted-foreground">
                     Automatically log out inactive users
@@ -108,9 +119,7 @@ const SettingsPage = () => {
                 <div className="flex gap-2">
                   <Input 
                     id="api-key" 
-                    defaultValue="api-12345-abcde-67890-fghij" 
-                    readOnly
-                    type="password"
+                    defaultValue="api-12345-abcde-67890-fghij"
                     className="font-mono"
                   />
                   <Button variant="outline" onClick={() => toast.success("API key copied to clipboard")}>
@@ -118,7 +127,7 @@ const SettingsPage = () => {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Your API key for accessing the Gophish API
+                  Your API key for accessing the Sentrifense API
                 </p>
               </div>
 

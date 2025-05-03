@@ -25,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { StatCard } from '@/components/ui/StatCard';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 // Mock data for charts
 const campaignPerformanceData = [
@@ -43,13 +44,19 @@ const vulnerabilityData = [
 const COLORS = ['#4e46e5', '#ea384c', '#64748b'];
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleNewCampaign = () => {
+    navigate('/campaigns/new');
+  };
+
   return (
     <div>
       <PageHeader 
         title="Dashboard" 
         description="Key metrics and campaign performance."
         actions={
-          <Button variant="default">
+          <Button variant="default" onClick={handleNewCampaign}>
             <Send className="mr-2 h-4 w-4" />
             New Campaign
           </Button>

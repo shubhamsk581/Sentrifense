@@ -7,6 +7,16 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
+import { toast } from 'sonner';
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose
+} from "@/components/ui/dialog";
 
 interface NewTemplateFormProps {
   onSubmit: () => void;
@@ -14,6 +24,9 @@ interface NewTemplateFormProps {
 
 const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
   const [activeTab, setActiveTab] = useState('design');
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
+  const [linkDialogOpen, setLinkDialogOpen] = useState(false);
+  const [trackingDialogOpen, setTrackingDialogOpen] = useState(false);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +34,7 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-6xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="template-name">Template Name</Label>
@@ -63,15 +76,15 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
               </div>
               
               <div className="flex space-x-2">
-                <Button type="button" variant="outline" size="sm">
+                <Button type="button" variant="outline" size="sm" onClick={() => setImageDialogOpen(true)}>
                   <Image className="mr-2 h-4 w-4" />
                   Add Image
                 </Button>
-                <Button type="button" variant="outline" size="sm">
+                <Button type="button" variant="outline" size="sm" onClick={() => setLinkDialogOpen(true)}>
                   <Link className="mr-2 h-4 w-4" />
                   Add Link
                 </Button>
-                <Button type="button" variant="outline" size="sm">
+                <Button type="button" variant="outline" size="sm" onClick={() => setTrackingDialogOpen(true)}>
                   <Code className="mr-2 h-4 w-4" />
                   Add Tracking Pixel
                 </Button>
@@ -124,6 +137,101 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
           Save Template
         </Button>
       </div>
+
+      {/* Add Image Dialog */}
+      <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add Image</DialogTitle>
+            <DialogDescription>
+              Insert an image into your email template.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="image-url">Image URL</Label>
+              <Input id="image-url" placeholder="https://example.com/image.jpg" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="image-alt">Alt Text</Label>
+              <Input id="image-alt" placeholder="Description of the image" />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={() => {
+              toast.success("Image added to template");
+              setImageDialogOpen(false);
+            }}>
+              Insert Image
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Link Dialog */}
+      <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add Link</DialogTitle>
+            <DialogDescription>
+              Insert a link into your email template.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="link-url">URL</Label>
+              <Input id="link-url" placeholder="https://example.com" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-text">Link Text</Label>
+              <Input id="link-text" placeholder="Click here" />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={() => {
+              toast.success("Link added to template");
+              setLinkDialogOpen(false);
+            }}>
+              Insert Link
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Tracking Pixel Dialog */}
+      <Dialog open={trackingDialogOpen} onOpenChange={setTrackingDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add Tracking Pixel</DialogTitle>
+            <DialogDescription>
+              Insert a tracking pixel to monitor email opens.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="tracking-id">Tracking ID</Label>
+              <Input id="tracking-id" placeholder="Optional tracking ID" />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={() => {
+              toast.success("Tracking pixel added to template");
+              setTrackingDialogOpen(false);
+            }}>
+              Insert Tracking Pixel
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </form>
   );
 };

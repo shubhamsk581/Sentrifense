@@ -33,7 +33,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <div className={cn(
-      "h-screen bg-sidebar text-sidebar-foreground transition-all duration-200 flex flex-col border-r border-sidebar-border", 
+      "h-screen bg-sidebar text-sidebar-foreground transition-all duration-300 ease-in-out flex flex-col border-r border-sidebar-border fixed z-10", 
       collapsed ? "w-16" : "w-64"
     )}>
       <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
@@ -45,7 +45,8 @@ export const Sidebar: React.FC = () => {
         )}
         <button 
           onClick={() => setCollapsed(!collapsed)} 
-          className="p-1 rounded-md hover:bg-sidebar-accent focus:outline-none"
+          className="p-1 rounded-md hover:bg-sidebar-accent focus:outline-none transition-colors"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
         </button>
