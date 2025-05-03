@@ -21,6 +21,8 @@ import {
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import NewGroupForm from '@/components/groups/NewGroupForm';
+import ImportGroupsDialog from '@/components/groups/ImportGroupsDialog';
+import { toast } from 'sonner';
 
 // Mock data for groups
 const mockGroups = [
@@ -60,6 +62,12 @@ const mockGroups = [
 
 const GroupsList: React.FC = () => {
   const [isNewGroupOpen, setIsNewGroupOpen] = useState(false);
+  const [isImportOpen, setIsImportOpen] = useState(false);
+
+  const handleImportData = (data: any[]) => {
+    console.log('Imported data:', data);
+    toast.success(`Successfully imported ${data.length} group members`);
+  };
 
   return (
     <div>
@@ -68,7 +76,7 @@ const GroupsList: React.FC = () => {
         description="Manage recipient groups for your phishing campaigns."
         actions={
           <div className="flex space-x-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => setIsImportOpen(true)}>
               <Upload className="mr-2 h-4 w-4" />
               Import CSV
             </Button>
@@ -142,6 +150,12 @@ const GroupsList: React.FC = () => {
           <NewGroupForm onSubmit={() => setIsNewGroupOpen(false)} />
         </DialogContent>
       </Dialog>
+      
+      <ImportGroupsDialog 
+        open={isImportOpen}
+        onOpenChange={setIsImportOpen}
+        onImport={handleImportData}
+      />
     </div>
   );
 };

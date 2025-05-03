@@ -7,12 +7,13 @@ import { Toggle } from '@/components/ui/toggle';
 const ThemeSwitcher: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
+  // Initialize theme on component mount
   useEffect(() => {
     // Use the user's preference from localStorage or default to dark
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (savedTheme) {
       setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      applyTheme(savedTheme);
     }
   }, []);
 
@@ -20,7 +21,15 @@ const ThemeSwitcher: React.FC = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    applyTheme(newTheme);
+  };
+
+  const applyTheme = (theme: 'light' | 'dark') => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   return (

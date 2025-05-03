@@ -14,6 +14,8 @@ import SMTPProfilesList from "./pages/smtp/SMTPProfilesList";
 import UsersList from "./pages/users/UsersList";
 import ReportsPage from "./pages/reports/ReportsPage";
 import SettingsPage from "./pages/settings/SettingsPage";
+import LoginPage from "./pages/auth/LoginPage";
+import AuthCheck from "./components/auth/AuthCheck";
 
 const queryClient = new QueryClient();
 
@@ -24,14 +26,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainLayout><Dashboard /></MainLayout>} />
-          <Route path="/campaigns" element={<MainLayout><CampaignsList /></MainLayout>} />
-          <Route path="/templates" element={<MainLayout><TemplatesList /></MainLayout>} />
-          <Route path="/groups" element={<MainLayout><GroupsList /></MainLayout>} />
-          <Route path="/smtp-profiles" element={<MainLayout><SMTPProfilesList /></MainLayout>} />
-          <Route path="/users" element={<MainLayout><UsersList /></MainLayout>} />
-          <Route path="/reports" element={<MainLayout><ReportsPage /></MainLayout>} />
-          <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<AuthCheck><MainLayout><Dashboard /></MainLayout></AuthCheck>} />
+          <Route path="/campaigns" element={<AuthCheck><MainLayout><CampaignsList /></MainLayout></AuthCheck>} />
+          <Route path="/templates" element={<AuthCheck><MainLayout><TemplatesList /></MainLayout></AuthCheck>} />
+          <Route path="/groups" element={<AuthCheck><MainLayout><GroupsList /></MainLayout></AuthCheck>} />
+          <Route path="/smtp-profiles" element={<AuthCheck><MainLayout><SMTPProfilesList /></MainLayout></AuthCheck>} />
+          <Route path="/users" element={<AuthCheck><MainLayout><UsersList /></MainLayout></AuthCheck>} />
+          <Route path="/reports" element={<AuthCheck><MainLayout><ReportsPage /></MainLayout></AuthCheck>} />
+          <Route path="/settings" element={<AuthCheck><MainLayout><SettingsPage /></MainLayout></AuthCheck>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
