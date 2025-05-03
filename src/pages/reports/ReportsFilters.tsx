@@ -19,6 +19,7 @@ import { Label } from '@/components/ui/label';
 import { CalendarIcon, Download, Filter } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { DateRange } from 'react-day-picker';
 
 interface ReportsFiltersProps {
   onFilter: (filters: {
@@ -29,10 +30,7 @@ interface ReportsFiltersProps {
 }
 
 const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
-  const [date, setDate] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  const [date, setDate] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined,
   });
@@ -47,7 +45,7 @@ const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
   
   const handleFilter = () => {
     onFilter({
-      dateRange: date,
+      dateRange: date || { from: undefined, to: undefined },
       campaign,
       status
     });
@@ -66,7 +64,7 @@ const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
                   className="w-full justify-start text-left font-normal"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date.from ? (
+                  {date?.from ? (
                     date.to ? (
                       <>
                         {format(date.from, "LLL dd, y")} -{" "}
@@ -84,7 +82,7 @@ const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
                 <Calendar
                   initialFocus
                   mode="range"
-                  defaultMonth={date.from}
+                  defaultMonth={date?.from}
                   selected={date}
                   onSelect={setDate}
                   numberOfMonths={2}

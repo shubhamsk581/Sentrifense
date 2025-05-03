@@ -83,15 +83,15 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
     <div className="flex space-x-2">
       {/* Image Dialog */}
       <Dialog>
-        {({ close }) => (
-          <>
-            <DialogTrigger asChild>
-              <Button size="sm" variant="outline">
-                <Image size={16} className="mr-2" />
-                Add Image
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+        <DialogTrigger asChild>
+          <Button size="sm" variant="outline">
+            <Image size={16} className="mr-2" />
+            Add Image
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          {({ close }: { close: () => void }) => (
+            <>
               <DialogHeader>
                 <DialogTitle>Insert Image</DialogTitle>
                 <DialogDescription>
@@ -124,22 +124,22 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
                 </DialogClose>
                 <Button onClick={() => handleInsertImage(close)}>Insert Image</Button>
               </DialogFooter>
-            </DialogContent>
-          </>
-        )}
+            </>
+          )}
+        </DialogContent>
       </Dialog>
       
       {/* Link Dialog */}
       <Dialog>
-        {({ close }) => (
-          <>
-            <DialogTrigger asChild>
-              <Button size="sm" variant="outline">
-                <Link size={16} className="mr-2" />
-                Add Link
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+        <DialogTrigger asChild>
+          <Button size="sm" variant="outline">
+            <Link size={16} className="mr-2" />
+            Add Link
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          {({ close }: { close: () => void }) => (
+            <>
               <DialogHeader>
                 <DialogTitle>Insert Link</DialogTitle>
                 <DialogDescription>
@@ -181,22 +181,22 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
                 </DialogClose>
                 <Button onClick={() => handleInsertLink(close)}>Insert Link</Button>
               </DialogFooter>
-            </DialogContent>
-          </>
-        )}
+            </>
+          )}
+        </DialogContent>
       </Dialog>
       
       {/* Tracking Pixel Dialog */}
       <Dialog>
-        {({ close }) => (
-          <>
-            <DialogTrigger asChild>
-              <Button size="sm" variant="outline">
-                <Eye size={16} className="mr-2" />
-                Add Tracking Pixel
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+        <DialogTrigger asChild>
+          <Button size="sm" variant="outline">
+            <Eye size={16} className="mr-2" />
+            Add Tracking Pixel
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          {({ close }: { close: () => void }) => (
+            <>
               <DialogHeader>
                 <DialogTitle>Insert Tracking Pixel</DialogTitle>
                 <DialogDescription>
@@ -223,9 +223,9 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
                 </DialogClose>
                 <Button onClick={() => handleInsertTrackingPixel(close)}>Insert Tracking Pixel</Button>
               </DialogFooter>
-            </DialogContent>
-          </>
-        )}
+            </>
+          )}
+        </DialogContent>
       </Dialog>
     </div>
   );
