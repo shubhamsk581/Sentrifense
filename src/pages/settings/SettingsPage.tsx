@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,26 +8,19 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
-
 const SettingsPage = () => {
   const [loading, setLoading] = useState(false);
-
   const handleSaveSettings = () => {
     setLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
       toast.success("Settings saved successfully");
     }, 1000);
   };
-
-  return (
-    <div>
-      <PageHeader 
-        title="Settings" 
-        description="Manage your application settings"
-      />
+  return <div>
+      <PageHeader title="Settings" description="Manage your application settings" />
 
       <Tabs defaultValue="general">
         <TabsList className="mb-4">
@@ -84,10 +76,7 @@ const SettingsPage = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="log-level">Log Level</Label>
-                <select 
-                  id="log-level" 
-                  className="w-full p-2 rounded-md border border-input bg-background"
-                >
+                <select id="log-level" className="w-full p-2 rounded-md border border-input bg-background">
                   <option>Debug</option>
                   <option>Info</option>
                   <option>Warning</option>
@@ -117,11 +106,7 @@ const SettingsPage = () => {
               <div className="space-y-2">
                 <Label htmlFor="api-key">API Key</Label>
                 <div className="flex gap-2">
-                  <Input 
-                    id="api-key" 
-                    defaultValue="api-12345-abcde-67890-fghij"
-                    className="font-mono"
-                  />
+                  <Input id="api-key" defaultValue="api-12345-abcde-67890-fghij" className="font-mono" />
                   <Button variant="outline" onClick={() => toast.success("API key copied to clipboard")}>
                     Copy
                   </Button>
@@ -132,9 +117,7 @@ const SettingsPage = () => {
               </div>
 
               <div className="space-y-2">
-                <Button variant="destructive" onClick={() => toast.success("API key regenerated")}>
-                  Regenerate API Key
-                </Button>
+                <Button variant="destructive" onClick={() => toast.success("API key regenerated")}>Save API Key</Button>
                 <p className="text-sm text-muted-foreground">
                   Regenerating your API key will invalidate your existing key
                 </p>
@@ -174,10 +157,7 @@ const SettingsPage = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="smtp-security">Security</Label>
-                  <select 
-                    id="smtp-security" 
-                    className="w-full p-2 rounded-md border border-input bg-background"
-                  >
+                  <select id="smtp-security" className="w-full p-2 rounded-md border border-input bg-background">
                     <option>None</option>
                     <option>TLS</option>
                     <option>SSL</option>
@@ -218,8 +198,6 @@ const SettingsPage = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default SettingsPage;
