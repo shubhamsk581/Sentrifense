@@ -23,7 +23,7 @@ import { DateRange } from 'react-day-picker';
 
 interface ReportsFiltersProps {
   onFilter: (filters: {
-    dateRange: DateRange;
+    dateRange: DateRange | undefined;
     campaign: string;
     status: string;
   }) => void;
@@ -45,7 +45,7 @@ const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
   
   const handleFilter = () => {
     onFilter({
-      dateRange: date || { from: undefined, to: undefined },
+      dateRange: date,
       campaign,
       status
     });

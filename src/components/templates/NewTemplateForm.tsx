@@ -30,6 +30,7 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    toast.success('Template saved successfully');
     onSubmit();
   };
 
@@ -140,7 +141,7 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
 
       {/* Add Image Dialog */}
       <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Add Image</DialogTitle>
             <DialogDescription>
@@ -173,7 +174,7 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
 
       {/* Add Link Dialog */}
       <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Add Link</DialogTitle>
             <DialogDescription>
@@ -206,7 +207,7 @@ const NewTemplateForm: React.FC<NewTemplateFormProps> = ({ onSubmit }) => {
 
       {/* Add Tracking Pixel Dialog */}
       <Dialog open={trackingDialogOpen} onOpenChange={setTrackingDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Add Tracking Pixel</DialogTitle>
             <DialogDescription>

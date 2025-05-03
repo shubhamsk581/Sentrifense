@@ -1,18 +1,11 @@
 
 import React, { useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  Calendar,
-  Check,
-  Download,
-  Filter,
   Users,
   Zap,
   Lock,
-  Globe,
-  AlertCircle,
 } from 'lucide-react';
 import {
   BarChart,
@@ -23,17 +16,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { 
-  Popover, 
-  PopoverContent, 
-  PopoverTrigger 
-} from '@/components/ui/popover';
-import { CalendarIcon } from 'lucide-react';
 import { DateRange } from 'react-day-picker';
-import { addDays, format } from 'date-fns';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import ReportsFilters from './ReportsFilters';
 import { toast } from 'sonner';
 
 const campaignData = [
@@ -75,14 +59,19 @@ const campaignData = [
 ];
 
 const ReportsPage: React.FC = () => {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: addDays(new Date(), -30),
-    to: new Date(),
+  const [filterState, setFilterState] = useState({
+    dateRange: undefined as DateRange | undefined,
+    campaign: 'all',
+    status: 'all'
   });
-  const [filterOpen, setFilterOpen] = useState(false);
 
-  const handleExport = () => {
-    toast.success('Report exported successfully');
+  const handleFilter = (filters: { 
+    dateRange: DateRange | undefined; 
+    campaign: string; 
+    status: string; 
+  }) => {
+    setFilterState(filters);
+    toast.success('Filters applied');
   };
 
   return (
@@ -90,109 +79,9 @@ const ReportsPage: React.FC = () => {
       <PageHeader 
         title="Reports" 
         description="View campaign results and analytics."
-        actions={
-          <div className="flex space-x-2">
-            <Popover open={filterOpen} onOpenChange={setFilterOpen}>
-              <PopoverTrigger asChild>
-                <Button variant="outline">
-                  <Filter className="mr-2 h-4 w-4" />
-                  Filter
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80" align="end">
-                <div className="space-y-4">
-                  <h4 className="font-medium">Filter Reports</h4>
-                  <div className="space-y-2">
-                    <Label htmlFor="campaign-select">Campaign</Label>
-                    <select 
-                      id="campaign-select" 
-                      className="w-full p-2 rounded-md border border-input bg-background"
-                    >
-                      <option value="">All Campaigns</option>
-                      <option value="Security Training">Security Training</option>
-                      <option value="Finance Update">Finance Update</option>
-                      <option value="HR Reminder">HR Reminder</option>
-                      <option value="IT Support">IT Support</option>
-                      <option value="System Upgrade">System Upgrade</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Date Range</Label>
-                    <div className="grid gap-2">
-                      <div
-                        className="flex items-center p-2 rounded-md border border-input"
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        <span>
-                          {date?.from ? (
-                            date.to ? (
-                              <>
-                                {format(date.from, 'LLL dd, y')} -{' '}
-                                {format(date.to, 'LLL dd, y')}
-                              </>
-                            ) : (
-                              format(date.from, 'LLL dd, y')
-                            )
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </span>
-                      </div>
-                      <CalendarComponent
-                        initialFocus
-                        mode="range"
-                        defaultMonth={date?.from}
-                        selected={date}
-                        onSelect={setDate}
-                        numberOfMonths={2}
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="user-group">User Group</Label>
-                    <select 
-                      id="user-group" 
-                      className="w-full p-2 rounded-md border border-input bg-background"
-                    >
-                      <option value="">All Groups</option>
-                      <option value="Executives">Executives</option>
-                      <option value="IT Department">IT Department</option>
-                      <option value="Finance">Finance</option>
-                      <option value="HR">HR</option>
-                    </select>
-                  </div>
-                  <div className="flex justify-end space-x-2">
-                    <Button 
-                      variant="outline" 
-                      onClick={() => {
-                        setDate({
-                          from: addDays(new Date(), -30),
-                          to: new Date(),
-                        });
-                        setFilterOpen(false);
-                      }}
-                    >
-                      Reset
-                    </Button>
-                    <Button 
-                      onClick={() => {
-                        toast.success("Filters applied");
-                        setFilterOpen(false);
-                      }}
-                    >
-                      Apply
-                    </Button>
-                  </div>
-                </div>
-              </PopoverContent>
-            </Popover>
-            <Button onClick={handleExport}>
-              <Download className="mr-2 h-4 w-4" />
-              Export
-            </Button>
-          </div>
-        }
       />
+      
+      <ReportsFilters onFilter={handleFilter} />
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>
