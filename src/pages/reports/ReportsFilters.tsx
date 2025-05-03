@@ -23,7 +23,7 @@ import { DateRange } from 'react-day-picker';
 
 interface ReportsFiltersProps {
   onFilter: (filters: {
-    dateRange: { from: Date | undefined; to: Date | undefined };
+    dateRange: DateRange;
     campaign: string;
     status: string;
   }) => void;
@@ -86,6 +86,7 @@ const ReportsFilters: React.FC<ReportsFiltersProps> = ({ onFilter }) => {
                   selected={date}
                   onSelect={setDate}
                   numberOfMonths={2}
+                  className="p-3 pointer-events-auto"
                 />
               </PopoverContent>
             </Popover>

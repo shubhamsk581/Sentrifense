@@ -89,43 +89,44 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
             Add Image
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          {({ close }: { close: () => void }) => (
-            <>
-              <DialogHeader>
-                <DialogTitle>Insert Image</DialogTitle>
-                <DialogDescription>
-                  Add an image to your template
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="image-url">Image URL</Label>
-                  <Input
-                    id="image-url"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    placeholder="https://example.com/image.jpg"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="alt-text">Alt Text</Label>
-                  <Input
-                    id="alt-text"
-                    value={imageAlt}
-                    onChange={(e) => setImageAlt(e.target.value)}
-                    placeholder="Description of the image"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Button onClick={() => handleInsertImage(close)}>Insert Image</Button>
-              </DialogFooter>
-            </>
-          )}
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Insert Image</DialogTitle>
+            <DialogDescription>
+              Add an image to your template
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="image-url">Image URL</Label>
+              <Input
+                id="image-url"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="alt-text">Alt Text</Label>
+              <Input
+                id="alt-text"
+                value={imageAlt}
+                onChange={(e) => setImageAlt(e.target.value)}
+                placeholder="Description of the image"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button onClick={(e) => {
+                e.preventDefault();
+                handleInsertImage(() => {}); // We don't need to call close as the DialogClose will handle it
+              }}>Insert Image</Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
       
@@ -137,52 +138,53 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
             Add Link
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          {({ close }: { close: () => void }) => (
-            <>
-              <DialogHeader>
-                <DialogTitle>Insert Link</DialogTitle>
-                <DialogDescription>
-                  Add a hyperlink to your template
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="link-url">URL</Label>
-                  <Input
-                    id="link-url"
-                    value={linkUrl}
-                    onChange={(e) => setLinkUrl(e.target.value)}
-                    placeholder="https://example.com"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="link-text">Link Text</Label>
-                  <Input
-                    id="link-text"
-                    value={linkText}
-                    onChange={(e) => setLinkText(e.target.value)}
-                    placeholder="Click here"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="link-title">Title (Optional)</Label>
-                  <Input
-                    id="link-title"
-                    value={linkTitle}
-                    onChange={(e) => setLinkTitle(e.target.value)}
-                    placeholder="Additional information"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Button onClick={() => handleInsertLink(close)}>Insert Link</Button>
-              </DialogFooter>
-            </>
-          )}
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Insert Link</DialogTitle>
+            <DialogDescription>
+              Add a hyperlink to your template
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="link-url">URL</Label>
+              <Input
+                id="link-url"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                placeholder="https://example.com"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="link-text">Link Text</Label>
+              <Input
+                id="link-text"
+                value={linkText}
+                onChange={(e) => setLinkText(e.target.value)}
+                placeholder="Click here"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="link-title">Title (Optional)</Label>
+              <Input
+                id="link-title"
+                value={linkTitle}
+                onChange={(e) => setLinkTitle(e.target.value)}
+                placeholder="Additional information"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button onClick={(e) => {
+                e.preventDefault();
+                handleInsertLink(() => {}); // We don't need to call close as the DialogClose will handle it
+              }}>Insert Link</Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
       
@@ -194,37 +196,38 @@ export const TemplateEditorDialogs: React.FC<TemplateEditorDialogsProps> = ({
             Add Tracking Pixel
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          {({ close }: { close: () => void }) => (
-            <>
-              <DialogHeader>
-                <DialogTitle>Insert Tracking Pixel</DialogTitle>
-                <DialogDescription>
-                  Add an invisible tracking pixel to your template
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="tracking-id">Tracking ID</Label>
-                  <Input
-                    id="tracking-id"
-                    value={trackingId}
-                    onChange={(e) => setTrackingId(e.target.value)}
-                    placeholder="unique-tracking-id"
-                  />
-                  <p className="text-sm text-muted-foreground">
-                    This ID will be used to identify when the email is opened
-                  </p>
-                </div>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Button onClick={() => handleInsertTrackingPixel(close)}>Insert Tracking Pixel</Button>
-              </DialogFooter>
-            </>
-          )}
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Insert Tracking Pixel</DialogTitle>
+            <DialogDescription>
+              Add an invisible tracking pixel to your template
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="tracking-id">Tracking ID</Label>
+              <Input
+                id="tracking-id"
+                value={trackingId}
+                onChange={(e) => setTrackingId(e.target.value)}
+                placeholder="unique-tracking-id"
+              />
+              <p className="text-sm text-muted-foreground">
+                This ID will be used to identify when the email is opened
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button onClick={(e) => {
+                e.preventDefault();
+                handleInsertTrackingPixel(() => {}); // We don't need to call close as the DialogClose will handle it
+              }}>Insert Tracking Pixel</Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
