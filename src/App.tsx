@@ -13,6 +13,7 @@ import GroupsList from "./pages/groups/GroupsList";
 import SMTPProfilesList from "./pages/smtp/SMTPProfilesList";
 import UsersList from "./pages/users/UsersList";
 import ReportsPage from "./pages/reports/ReportsPage";
+import SettingsPage from "./pages/settings/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/smtp-profiles" element={<MainLayout><SMTPProfilesList /></MainLayout>} />
           <Route path="/users" element={<MainLayout><UsersList /></MainLayout>} />
           <Route path="/reports" element={<MainLayout><ReportsPage /></MainLayout>} />
+          <Route path="/settings" element={<MainLayout><SettingsPage /></MainLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

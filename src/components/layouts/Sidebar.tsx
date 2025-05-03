@@ -11,7 +11,8 @@ import {
   Settings, 
   User, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  Shield
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -38,7 +39,8 @@ export const Sidebar: React.FC = () => {
       <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
         {!collapsed && (
           <div className="flex items-center">
-            <span className="font-bold text-xl text-cyber-accent">HackNope</span>
+            <Shield className="mr-2 text-cyber-accent" size={24} />
+            <span className="font-bold text-xl text-cyber-accent">Sentrifense</span>
           </div>
         )}
         <button 
