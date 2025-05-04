@@ -54,7 +54,7 @@ export const Sidebar: React.FC = () => {
   return (
     <div 
       className={cn(
-        "h-screen bg-sidebar text-sidebar-foreground transition-all duration-300 ease-in-out flex flex-col border-r border-sidebar-border fixed z-10",
+        "h-screen bg-sidebar text-sidebar-foreground transition-width duration-300 ease-in-out flex flex-col border-r border-sidebar-border fixed z-10",
         collapsed ? "w-16" : "w-64"
       )}
     >
@@ -67,7 +67,10 @@ export const Sidebar: React.FC = () => {
         )}
         <button 
           onClick={() => setCollapsed(!collapsed)} 
-          className="p-1 rounded-md hover:bg-sidebar-accent focus:outline-none transition-colors" 
+          className={cn(
+            "p-1 rounded-md hover:bg-sidebar-accent focus:outline-none transition-colors",
+            collapsed ? "mx-auto" : ""
+          )}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
