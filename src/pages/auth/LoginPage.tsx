@@ -186,7 +186,7 @@ const LoginPage = () => {
         </CardContent>
         <CardFooter className="flex flex-col space-y-2 text-center text-sm text-muted-foreground">
           <p>
-            By continuing, you agree to Sentrifense's Terms of Service and Privacy Policy
+            By continuing, you agree to Cyberletics's Terms of Service and Privacy Policy
           </p>
         </CardFooter>
       </Card>
