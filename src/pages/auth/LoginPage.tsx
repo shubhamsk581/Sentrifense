@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Eye, EyeOff, UserRound, Lock } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import cyberleticsLogo from '@/assets/cyberletics-logo.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
