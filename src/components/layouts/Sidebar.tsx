@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Send, FileText, Users, Mail, BarChart, Settings, User, ChevronLeft, ChevronRight, Shield } from 'lucide-react';
+import { LayoutDashboard, Send, FileText, Users, Mail, BarChart, Settings, User, ChevronLeft, ChevronRight } from 'lucide-react';
+import cyberleticsLogo from '@/assets/cyberletics-logo.png';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -61,8 +62,8 @@ export const Sidebar: React.FC = () => {
       <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
         {!collapsed && (
           <div className="flex items-center">
-            <Shield size={24} className="mr-2 text-cyber-accent bg-slate-50 rounded-none" />
-            <span className="font-bold text-xl text-violet-800">Cyberletics</span>
+            <img src={cyberleticsLogo} alt="Cyberletics" className="mr-2 h-7 w-7" />
+            <span className="font-bold text-xl text-primary">Cyberletics</span>
           </div>
         )}
         <button 
