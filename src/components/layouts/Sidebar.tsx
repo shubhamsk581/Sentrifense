@@ -62,7 +62,7 @@ export const Sidebar: React.FC = () => {
         {!collapsed && (
           <div className="flex items-center">
             <Shield size={24} className="mr-2 text-cyber-accent bg-slate-50 rounded-none" />
-            <span className="font-bold text-xl text-violet-800">Sentrifense</span>
+            <span className="font-bold text-xl text-violet-800">Cyberletics</span>
           </div>
         )}
         <button 
