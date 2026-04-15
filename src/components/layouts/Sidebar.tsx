@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Send, FileText, Users, Mail, BarChart, Settings, User, ChevronLeft, ChevronRight, Shield } from 'lucide-react';
+import { LayoutDashboard, Send, FileText, Users, Mail, BarChart, Settings, User, ChevronLeft, ChevronRight } from 'lucide-react';
+import cyberleticsLogo from '@/assets/cyberletics-logo.png';
 import { cn } from '@/lib/utils';
 
 const navItems = [
